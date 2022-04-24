@@ -1,5 +1,3 @@
 # Title
 
-[]
-
-more text here
+[]()
