@@ -1,7 +1,10 @@
 import static org.junit.Assert.*;
 import java.util.ArrayList;
-
+import java.io.IOException;
 import org.junit.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class MarkdownParseTest {
     @Test
     public void addition() {
@@ -18,6 +21,21 @@ public class MarkdownParseTest {
         expected.add("rando.gov");
         ArrayList<String> result = MarkdownParse.getLinks(toTest);
         assertEquals(expected,result);
+    }
+
+    @Test
+    public void testGetLinks5() throws IOException {
+        MarkdownParse test = new MarkdownParse();
+
+        Path fileName = Path.of("test-file2.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = test.getLinks(content);
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("https://something.com");
+        expected.add("some-page.html");
+
+        assertEquals(expected,links);
+
     }
 }
 
